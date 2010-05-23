@@ -1,0 +1,11 @@
+body {
+  .app-container {
+    @include container;
+    @include showgrid; }
+  .app-header, .app-footer {
+    @include column($blueprint-grid-columns); } }
+
+@import "layouts/content";
+@import "layouts/sidebar_content";
+@import "layouts/content_sidebar";
+@import "layouts/sidebar_content_sidebar";

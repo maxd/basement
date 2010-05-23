@@ -9,5 +9,10 @@
     = stylesheet_link_tag 'compiled/print.css', :media => 'print'
     /[if lt IE 8]
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
-  %body
-    = yield
+  %body.bp{:class => "#{layout_class}"}
+    .app-container
+      .app-header
+        header
+      = render :partial => layout_partial
+      .app-footer
+        footer    

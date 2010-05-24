@@ -11,8 +11,6 @@
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
   %body.bp{:class => "#{layout_class}"}
     .app-container
-      .app-header
-        header
+      .app-header= render :partial => "layouts/header"
       = render :partial => layout_partial
-      .app-footer
-        footer    
+      .app-footer= render :partial => "layouts/footer"

@@ -4,7 +4,8 @@ $parts: 0;
 body {
   .app-container {
     @include container;
-    @include showgrid; }
+    @include showgrid;
+    position: relative; }
   .app-header, .app-footer {
     @include column($grid-columns); } }
 

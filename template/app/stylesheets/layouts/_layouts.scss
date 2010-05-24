@@ -1,0 +1,59 @@
+$parts: 0;
+
+// Common elements
+body {
+  .app-container {
+    @include container;
+    @include showgrid; }
+  .app-header, .app-footer {
+    @include column($grid-columns); } }
+
+// Content layout
+body.content-layout {
+  .app-content {
+    @include column($grid-columns, true); } }
+
+
+// Set number of parts for Content-Sidebar and Sidebar-Content layouts
+@if $layout-type == fixed {
+  $parts: 3;
+} @else {
+  $parts: 5;
+}
+
+// Content-Sidebar layout
+body.content-sidebar-layout {
+  .app-sidebar {
+    $sidebar-columns: floor($grid-columns / $parts);
+    @include column($sidebar-columns); }
+  .app-content {
+    $content-columns: ceil(($parts - 1) * $grid-columns / $parts);
+    @include column($content-columns, true); } }
+
+// Sidebar-Content layout
+body.sidebar-content-layout {
+  .app-sidebar {
+    $sidebar-columns: floor($grid-columns / $parts);
+    @include column($sidebar-columns); }
+  .app-content {
+    $content-columns: ceil(($parts - 1) * $grid-columns / $parts);
+    @include column($content-columns, true); } }
+
+// Set number of parts for Sidebar-Content-Sidebar layout
+@if $layout-type == fixed {
+  $parts: 4;
+} @else {
+  $parts: 6;
+}
+
+// Sidebar-Content-Sidebar layout
+body.sidebar-content-sidebar-layout {
+  .app-left-sidebar {
+    $sidebar-columns: floor($grid-columns / $parts);
+    @include column($sidebar-columns); }
+  .app-content {
+    $content-columns: ceil(($parts - 2) * $grid-columns / $parts);
+    @include column($content-columns); }
+  .app-right-sidebar {
+    $sidebar-columns: floor($grid-columns / $parts);
+    @include column($sidebar-columns, true); } }

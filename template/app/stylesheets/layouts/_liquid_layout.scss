@@ -1,0 +1,7 @@
+@import "blueprint/liquid";
+
+$layout-type: liquid;
+$grid-columns: $blueprint-liquid-grid-columns;
+$blueprint_liquid_container_width: 99%;
+
+@import "layouts";

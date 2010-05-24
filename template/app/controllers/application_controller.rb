@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   TITLE = "Application Title"
 
-  attr_accessor_with_default :layout_type, :content_sidebar_layout
-  
+  attr_accessor_with_default :layout_view, :content_sidebar_layout
+  attr_accessor_with_default :layout_type, :fixed
+
 end

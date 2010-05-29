@@ -1,0 +1,54 @@
+require "base64"
+
+# Helper functions
+
+def binary_file(file_name, base64content, log_action = true)
+  log 'binary_file', file_name if log_action
+  dir, file = [File.dirname(file_name), File.basename(file_name)]
+
+  inside(dir) do
+    File.open(file, "wb") do |f|
+      f.write Base64.decode64(base64content)
+    end
+  end
+end
+
+# Remove unused files
+run "rm public/index.html"
+run "rm app/views/layouts/application.html.erb"
+
+# Add used gems
+gem "russian", :version => ">=0.2.5"
+gem "haml", :version => ">=3.0.4"
+gem "compass", :version => ">= 0.10.1"
+
+gem "rspec", :version => ">=2.0.0.beta.8", :group => :test
+gem "rspec-rails", :version => ">=2.0.0.beta.8", :group => :test
+
+# Install rspec
+run "rails g rspec:install"
+
+# Additional application files
+<%= add_file ".gitignore" %>
+
+<%= add_file "app/**/*.*" %>
+
+<%= add_file "config/locales/*.yml" %>
+<%= add_file "config/initializers/compass.rb" %>
+<%= add_file "config/compass.rb" %>
+
+<%= add_file "db/migrate/**/*.*" %>
+<%= add_file "db/seeds.rb" %>
+
+<%= add_file "lib/**/*.*" %>
+
+<%= add_file "spec/**/*.*" %>
+
+# Routes
+route "root :to => 'main#index'"
+
+# Initialize git repository
+#git :init
+#git :add => "."
+#git :commit => "-a -m 'Initial commit'"
+

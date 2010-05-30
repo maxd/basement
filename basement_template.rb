@@ -39,9 +39,47 @@ public/stylesheets/compiled}
 
 
 
-file "app/views/main/index.html.haml", %q{%h1 Home#index
+file "app/views/main/index.html.haml", %q{%h1 Welcome
 %p
-  Find me in app/views/home/index.html.erb
+  This Rails application has been created with the help of
+  %a(href="http://github.com/maxd/basement") basement
+  plugin. Now you can modifiy application as you want.
+
+%h2 Available features
+%ul.square-list
+  %li Two layout types (with and without sidebar)
+  %li Admin panel
+  %li SSL support
+  %li
+    Powerfull HTML engine
+    %a(href="http://haml-lang.com") HAML
+    and CSS engine
+    %a(href="http://sass-lang.com") SASS
+  %li
+    Authentication with
+    %a(href="http://github.com/binarylogic/authlogic") authlogic
+    and authorization with
+    %a(href="http://github.com/be9/acl9") acl9
+    plugins
+  %li
+    Navigation menu with
+    %a(href="http://github.com/andi/simple-navigation") simple-navigation
+    plugin
+  %li
+    Powerfull FORM generator
+    %a(href="http://github.com/justinfrench/formtastic") formtastic
+  %li
+    HTML table generator
+    %a(href="http://github.com/pluginaweek/table_helper") table_helper
+    and paginator
+    %a(href="http://github.com/mislav/will_paginate") will_paginate
+  %li
+    Functional tests based on
+    %a(href="http://github.com/aslakhellesoy/cucumber") cucumber
+    and
+    %a(href="http://github.com/brynary/webrat") webrat
+    engines
+
 }
 
 file "app/views/layouts/_main_navigation.html.haml", %q{}
@@ -62,26 +100,34 @@ file "app/views/layouts/_user_navigation.html.haml", %q{.app-user-navigation
       %a(href="ya.ru") Link 2}
 
 file "app/views/layouts/partials/_sidebar_content_layout.html.haml", %q{.app-sidebar
-  sidebar
+  .app-sidebar-wrapper
+    sidebar
 .app-content
-  = yield
+  .app-content-wrapper
+    = yield
 }
 
 file "app/views/layouts/partials/_sidebar_content_sidebar_layout.html.haml", %q{.app-left-sidebar
-  left-sidebar
+  .app-sidebar-wrapper
+    left-sidebar
 .app-content
-  = yield
+  .app-content-wrapper
+    = yield
 .app-right-sidebar
-  right-sidebar
+  .app-sidebar-wrapper
+    right-sidebar
 }
 
 file "app/views/layouts/partials/_content_sidebar_layout.html.haml", %q{.app-content
-  = yield
+  .app-content-wrapper
+    = yield
 .app-sidebar
-  sidebar}
+  .app-sidebar-wrapper
+    sidebar}
 
 file "app/views/layouts/partials/_content_layout.html.haml", %q{.app-content
-  = yield}
+  .app-content-wrapper
+    = yield}
 
 file "app/views/layouts/application.html.haml", %q{!!! XML
 !!! Strict
@@ -135,11 +181,10 @@ file "app/stylesheets/_screen.scss", %q{// This import applies a global reset to
 @import "blueprint";
 
 // Combine the partials into a single screen stylesheet.
+@import "partials/colors";
 @import "partials/page";
 @import "partials/form";
-@import "partials/header";
 @import "partials/user_navigation";
-@import "partials/footer";
 }
 
 file "app/stylesheets/partials/_user_navigation.scss", %q{body .app-user-navigation {
@@ -175,32 +220,6 @@ $blueprint-grid-margin: 10px;
 $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $blueprint-grid-columns - $blueprint-grid-margin;
 }
 
-file "app/stylesheets/partials/_footer.scss", %q{body .app-footer {
-  background-color: $feedback_border_color;
-  border-top: 1px solid $quiet_color; 
-
-  p {
-    text-align: right;
-    margin: 15px 0;
-    padding: 0 10px;
-  }
-}}
-
-file "app/stylesheets/partials/_header.scss", %q{body .app-header {
-  background-color: $feedback_border_color;
-  border-bottom: 1px solid $quiet_color;
-  padding: 5px 20px; 
-
-  h1 {
-    padding: 5px 0;
-    margin: 5px 0;
-
-    a {
-      text-decoration: none;
-    }
-  }
-}}
-
 file "app/stylesheets/partials/_page.scss", %q{// Import the non-default scaffolding module to help us get started.
 @import "blueprint/scaffolding";
 
@@ -228,6 +247,42 @@ form.bp {
   @include blueprint-form; }
 }
 
+file "app/stylesheets/partials/_colors.scss", %q{$font_color:     #333333;
+$bg_color:       #FFFFFF;
+$quiet_color:    #E8F3F8;
+$loud_color:     #C2CBCE;
+$header_color:   #81A8B8;
+$alt_text_color: #666666;
+
+$bg_image: "/images/bg.png";
+
+$link_color:         #81A8B8              ;
+$link_hover_color:   #A4BCC2              ;
+$link_focus_color:   $link_hover_color    ;
+$link_active_color:  $link_color + #cc0000;
+$link_visited_color: $link_color          ;
+
+$feedback_border_color: #dddddd;
+$success_color:         #264409;
+$success_bg_color:      #e6efc2;
+$success_border_color:  #c6d880;
+$notice_color:          #514721;
+$notice_bg_color:       #fff6bf;
+$notice_border_color:   #ffd324;
+$error_color:           #8a1f11;
+$error_bg_color:        #fbe3e4;
+$error_border_color:    #fbc2c4;
+
+$highlight_color:        yellow;
+$added_color:             white;
+$added_bg_color:        #006600;
+$removed_color:           white;
+$removed_bg_color:      #990000;
+
+$blueprint_table_header_color: $header_color;
+$blueprint_table_stripe_color: $quiet_color;
+}
+
 file "app/stylesheets/print.scss", %q{@import "blueprint";
 
 // To generate css equivalent to the blueprint css but with your configuration applied, uncomment:
@@ -237,6 +292,35 @@ file "app/stylesheets/print.scss", %q{@import "blueprint";
 body.bp {
   @include blueprint-print(true); }
 }
+
+file "app/stylesheets/layouts/_footer.scss", %q{body .app-footer {
+  background-color: $quiet_color;
+  border-top: 1px solid $loud_color; 
+
+  p {
+    text-align: right;
+    padding: $footer_wrapper_padding;
+    margin: 0;
+  }
+}}
+
+file "app/stylesheets/layouts/_header.scss", %q{body .app-header {
+  background-color: $quiet_color;
+  border-bottom: 1px solid $loud_color;
+
+  h1 {
+    padding: $header_wrapper_padding; 
+    margin: 5px 0;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        color: $header_color;
+      }
+    }
+  }
+}}
 
 file "app/stylesheets/layouts/_fixed_layout.scss", %q{$layout-type: fixed;
 $grid-columns: $blueprint-grid-columns;
@@ -254,13 +338,36 @@ $blueprint_liquid_container_width: 99%;
 file "app/stylesheets/layouts/_layouts.scss", %q{$parts: 0;
 
 // Common elements
+
+$header_wrapper_padding: 5px 20px;
+$footer_wrapper_padding: 10px 20px;
+
+$content_wrapper_padding: 10px 20px;
+$sidebar_wrapper_padding: 10px 10px;
+
 body {
+  @if $bg_image != "" {
+    background: url($bg_image);
+  }
+
   .app-container {
     @include container;
-    @include showgrid;
-    position: relative; }
-  .app-header, .app-footer {
-    @include column($grid-columns); } }
+    position: relative;
+    background-color: $bg_color;
+
+    .app-header, .app-footer {
+      @include column($grid-columns);
+    }
+
+    .app-content-wrapper {
+      padding: $content_wrapper_padding;
+    }
+
+    .app-sidebar-wrapper {
+      padding: $sidebar_wrapper_padding;
+    }
+  }
+}
 
 // Content layout
 body.content-layout {
@@ -310,7 +417,10 @@ body.sidebar-content-sidebar-layout {
     @include column($content-columns); }
   .app-right-sidebar {
     $sidebar-columns: floor($grid-columns / $parts);
-    @include column($sidebar-columns, true); } }}
+    @include column($sidebar-columns, true); } }
+
+@import "header";
+@import "footer";}
 
 file "app/stylesheets/ie.scss", %q{@import "blueprint";
 

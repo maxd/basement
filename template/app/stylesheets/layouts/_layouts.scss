@@ -1,13 +1,36 @@
 $parts: 0;
 
 // Common elements
+
+$header_wrapper_padding: 5px 20px;
+$footer_wrapper_padding: 10px 20px;
+
+$content_wrapper_padding: 10px 20px;
+$sidebar_wrapper_padding: 10px 10px;
+
 body {
+  @if $bg_image != "" {
+    background: url($bg_image);
+  }
+
   .app-container {
     @include container;
-    @include showgrid;
-    position: relative; }
-  .app-header, .app-footer {
-    @include column($grid-columns); } }
+    position: relative;
+    background-color: $bg_color;
+
+    .app-header, .app-footer {
+      @include column($grid-columns);
+    }
+
+    .app-content-wrapper {
+      padding: $content_wrapper_padding;
+    }
+
+    .app-sidebar-wrapper {
+      padding: $sidebar_wrapper_padding;
+    }
+  }
+}
 
 // Content layout
 body.content-layout {
@@ -58,3 +81,6 @@ body.sidebar-content-sidebar-layout {
   .app-right-sidebar {
     $sidebar-columns: floor($grid-columns / $parts);
     @include column($sidebar-columns, true); } }
+
+@import "header";
+@import "footer";

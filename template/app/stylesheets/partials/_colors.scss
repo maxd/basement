@@ -1,0 +1,34 @@
+$font_color:     #333333;
+$bg_color:       #FFFFFF;
+$quiet_color:    #E8F3F8;
+$loud_color:     #C2CBCE;
+$header_color:   #81A8B8;
+$alt_text_color: #666666;
+
+$bg_image: "/images/bg.png";
+
+$link_color:         #81A8B8              ;
+$link_hover_color:   #A4BCC2              ;
+$link_focus_color:   $link_hover_color    ;
+$link_active_color:  $link_color + #cc0000;
+$link_visited_color: $link_color          ;
+
+$feedback_border_color: #dddddd;
+$success_color:         #264409;
+$success_bg_color:      #e6efc2;
+$success_border_color:  #c6d880;
+$notice_color:          #514721;
+$notice_bg_color:       #fff6bf;
+$notice_border_color:   #ffd324;
+$error_color:           #8a1f11;
+$error_bg_color:        #fbe3e4;
+$error_border_color:    #fbc2c4;
+
+$highlight_color:        yellow;
+$added_color:             white;
+$added_bg_color:        #006600;
+$removed_color:           white;
+$removed_bg_color:      #990000;
+
+$blueprint_table_header_color: $header_color;
+$blueprint_table_stripe_color: $quiet_color;

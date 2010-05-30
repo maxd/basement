@@ -1,0 +1,10 @@
+body .app-footer {
+  background-color: $quiet_color;
+  border-top: 1px solid $loud_color; 
+
+  p {
+    text-align: right;
+    padding: $footer_wrapper_padding;
+    margin: 0;
+  }
+}

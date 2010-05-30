@@ -1,0 +1,17 @@
+body .app-header {
+  background-color: $quiet_color;
+  border-bottom: 1px solid $loud_color;
+
+  h1 {
+    padding: $header_wrapper_padding; 
+    margin: 5px 0;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        color: $header_color;
+      }
+    }
+  }
+}

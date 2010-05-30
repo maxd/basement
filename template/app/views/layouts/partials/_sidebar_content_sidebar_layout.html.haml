@@ -1,9 +1,9 @@
 .app-left-sidebar
   .app-sidebar-wrapper
-    left-sidebar
+    = render :partial => "left_sidebar"
 .app-content
   .app-content-wrapper
     = yield
 .app-right-sidebar
   .app-sidebar-wrapper
-    right-sidebar
+    = render :partial => "right_sidebar"

@@ -1,0 +1,32 @@
+.app-sidebar, .app-left-sidebar, .app-right-sidebar {
+  .sidebar-block {
+    margin-bottom: 20px;
+
+    h6 {
+      background-color: $quiet_color;
+      border-right: 1px solid $loud_color;
+      border-bottom: 1px solid $loud_color;
+      color: $alt_text_color;
+      padding: 3px 7px;
+    }
+
+    ul.app-sidebar-navigation {
+      @include reset-box-model;
+      @include reset-list-style;
+
+      a {
+        text-decoration: none;
+        padding: 5px 10px;
+        display: block;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    p {
+      margin: 7px 10px;
+    }
+  }
+}

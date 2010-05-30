@@ -39,6 +39,20 @@ public/stylesheets/compiled}
 
 
 
+file "app/views/main/_sidebar.html.haml", %q{.sidebar-block
+  %h6 Actions
+  %ul.app-sidebar-navigation
+    %li
+      %a(href="#") Action 1
+    %li
+      %a(href="#") Action 2
+
+.sidebar-block
+  %h6 Information
+  %p
+    New information text for sidebar context
+}
+
 file "app/views/main/index.html.haml", %q{%h1 Welcome
 %p
   This Rails application has been created with the help of
@@ -101,7 +115,7 @@ file "app/views/layouts/_user_navigation.html.haml", %q{.app-user-navigation
 
 file "app/views/layouts/partials/_sidebar_content_layout.html.haml", %q{.app-sidebar
   .app-sidebar-wrapper
-    sidebar
+    = render :partial => "sidebar"
 .app-content
   .app-content-wrapper
     = yield
@@ -109,13 +123,13 @@ file "app/views/layouts/partials/_sidebar_content_layout.html.haml", %q{.app-sid
 
 file "app/views/layouts/partials/_sidebar_content_sidebar_layout.html.haml", %q{.app-left-sidebar
   .app-sidebar-wrapper
-    left-sidebar
+    = render :partial => "left_sidebar"
 .app-content
   .app-content-wrapper
     = yield
 .app-right-sidebar
   .app-sidebar-wrapper
-    right-sidebar
+    = render :partial => "right_sidebar"
 }
 
 file "app/views/layouts/partials/_content_sidebar_layout.html.haml", %q{.app-content
@@ -123,7 +137,7 @@ file "app/views/layouts/partials/_content_sidebar_layout.html.haml", %q{.app-con
     = yield
 .app-sidebar
   .app-sidebar-wrapper
-    sidebar}
+    = render :partial => "sidebar"}
 
 file "app/views/layouts/partials/_content_layout.html.haml", %q{.app-content
   .app-content-wrapper
@@ -185,6 +199,7 @@ file "app/stylesheets/_screen.scss", %q{// This import applies a global reset to
 @import "partials/page";
 @import "partials/form";
 @import "partials/user_navigation";
+@import "partials/sidebar";
 }
 
 file "app/stylesheets/partials/_user_navigation.scss", %q{body .app-user-navigation {
@@ -204,6 +219,39 @@ file "app/stylesheets/partials/_user_navigation.scss", %q{body .app-user-navigat
       a {
         text-decoration: none;
       }
+    }
+  }
+}}
+
+file "app/stylesheets/partials/_sidebar.scss", %q{.app-sidebar, .app-left-sidebar, .app-right-sidebar {
+  .sidebar-block {
+    margin-bottom: 20px;
+
+    h6 {
+      background-color: $quiet_color;
+      border-right: 1px solid $loud_color;
+      border-bottom: 1px solid $loud_color;
+      color: $alt_text_color;
+      padding: 3px 7px;
+    }
+
+    ul.app-sidebar-navigation {
+      @include reset-box-model;
+      @include reset-list-style;
+
+      a {
+        text-decoration: none;
+        padding: 5px 10px;
+        display: block;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    p {
+      margin: 7px 10px;
     }
   }
 }}
@@ -252,7 +300,7 @@ $bg_color:       #FFFFFF;
 $quiet_color:    #E8F3F8;
 $loud_color:     #C2CBCE;
 $header_color:   #81A8B8;
-$alt_text_color: #666666;
+$alt_text_color: #5E9DB8;
 
 $bg_image: "/images/bg.png";
 
